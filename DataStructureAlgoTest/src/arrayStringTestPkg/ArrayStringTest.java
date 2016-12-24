@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.sun.xml.internal.ws.policy.AssertionSet;
 
 import ArrayStringPkg.*;
+import searchSortAlgoPkg.searchSortAlgo;
 public class ArrayStringTest {
 
 	@Test
@@ -73,6 +74,21 @@ public class ArrayStringTest {
 	{
 		//assertArrayEquals(result, ArrayStringAlgo.productOfArrayExceptItself(ar));
 		//assertEquals(true, ArrayStringAlgo.validParentheses(''));
+		
+	}
+	@Test
+	public void rotateImage90Degree()
+	{
+		int[][] ar= new int[][]{{10,3,5,6},{10,3,5,6},{10,3,5,6},{10,3,5,6}};
+		
+		//assertArrayEquals(result, ArrayStringAlgo.productOfArrayExceptItself(ar));
+		ArrayStringAlgo.rotate(ar);
+		
+	}
+	@Test
+	public void longestPalindrome()
+	{
+		assertEquals("bab", searchSortAlgo.longestPalindromeSimple("babad"));
 		
 	}
 
