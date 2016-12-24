@@ -122,5 +122,49 @@ public class mathAlgo {
 		}
 		
 	}
+/*
+ 	Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+ For example, 
+ Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
+ * */
+	public static int trap(int[] height) {
+    if (height==null || height.length==1) return 0;
+	//create left to right max hight array
+	int left[] =new int[height.length];
+	int right[]=new int[height.length];
+	left[0]=height[0];
+	//--left to right
+	for(int i=1;i<height.length;i++)
+	{
+		if (height[i]<left[i-1])
+			left[i]=left[i-1];
+		else
+			left[i]=height[i];
 	
+	}
+	//right to left
+	right[height.length-1]=height[height.length-1];
+	for(int i=height.length-2;i>=0;i--)
+	{
+		if (height[i]<right[i+1])
+		{
+			right[i]=right[i+1];
+		}
+		else
+		{
+			right[i]=height[i];
+		}
+	}
+	
+	//now find sum of difference between them
+	int result=0;
+	for (int i=0;i<height.length;i++)
+	{
+		result=result+(Math.min(left[i], right[i])-height[i]);
+		
+	}
+	
+	return result;
+    }
+
 }

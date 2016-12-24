@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 import java.lang.*;
@@ -295,5 +296,58 @@ public static boolean validParentheses(String input)
 	
 	return false;
 }
-	
+
+//TO Rewrote after understanging 
+public static void rotate(int[][] matrix) {
+	int n = matrix.length;
+	for (int i = 0; i < n / 2; i++) {
+		for (int j = 0; j < Math.ceil(((double) n) / 2.); j++) {
+			System.out.println("Processing-"+ i+ "-"+j);
+			int temp = matrix[i][j];
+			matrix[i][j] = matrix[n-1-j][i];
+			System.out.println("Swapping-"+ i+ "-"+j+" with"+ (n-1-j)+"-"+ i );
+			
+			matrix[n-1-j][i] = matrix[n-1-i][n-1-j];
+			System.out.println("Swapping-"+(n-1-j)+"-"+ i+" with"+ (n-1-i)+"-"+ (n-1-i));
+			
+			matrix[n-1-i][n-1-j] = matrix[j][n-1-i];
+			System.out.println("Swapping-"+ (n-1-i)+"-"+ (n-1-i)+" with"+ (j)+"-"+ (n-1-i));
+			
+			
+			matrix[j][n-1-i] = temp;
+			System.out.println("Swapping-"+j+"-"+(n-1-i)+" with"+ temp);
+			
+			
+		}
+	}
 }
+
+public List<String> letterCombinations(String digits) {
+	
+	LinkedList<String> list=new LinkedList<String>();
+	
+	if (digits==null) return null;
+	if (digits.isEmpty()) return list;
+	String [] map=new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+	list.add("");
+	for (int i=0;i<digits.length();i++)
+	{
+		int charVal=Character.getNumericValue(digits.charAt(i));
+		while (list.peek().length()==i)
+		{
+			String currString=list.poll();
+			for(char chars : map[charVal].toCharArray())
+			{
+				list.add(currString+chars);
+			}
+		}
+		
+	}
+	return list;
+
+}
+    
+    
+
+}
+
